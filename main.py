@@ -4,6 +4,7 @@ import pandas as pd
 
 # Importăm funcțiile create anterior
 from services.ai_service import analyze_prescription, explain_diagnosis
+from services.calendar_service import add_meds_to_calendar
 from services.data_service import load_meds_database, find_alternatives_by_dci, get_disease_from_pdf
 
 # Setăm aspectul paginii
@@ -191,3 +192,11 @@ if uploaded_file is not None:
                         st.balloons()
                         st.success("Perfect! Datele validate sunt gata de a fi trimise în Google Calendar.")
                         #st.json(medicamente_confirmate)
+                        with st.spinner("Se sincronizează cu Google Calendar..."):
+                            try:
+                                # AICI SE ÎNTÂMPLĂ MAGIA! Apelăm funcția din calendar_service.py
+                                nr_evenimente = add_meds_to_calendar(medicamente_confirmate)
+                                st.success(
+                                    f"Perfect! Am adăugat {nr_evenimente} remindere în calendarul Prescripto pentru ziua de mâine.")
+                            except Exception as e:
+                                st.error(f"Eroare la sincronizarea cu Google: {e}")
