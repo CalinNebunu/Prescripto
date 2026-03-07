@@ -45,7 +45,9 @@ def get_disease_from_pdf(disease_code, pdf_path="data/coduri_boala.pdf"):
                     for rand in randuri:
                         # Dacă găsește codul pe rândul respectiv, returnează tot rândul
                         if disease_code.upper() in rand.upper():
-                            return rand.strip()
+                            rand_curat = rand.strip()
+                            rand_formatat = rand_curat.replace(disease_code.upper(), disease_code.upper() + " - ", 1)
+                            return rand_formatat
             return None  # Dacă nu găsește codul deloc
     except Exception as e:
         print(f"Eroare la citirea PDF-ului: {e}")
