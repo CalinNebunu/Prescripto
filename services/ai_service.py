@@ -8,7 +8,7 @@ genai.configure(api_key=GEMINI_API_KEY)
 
 # Alegem modelul potrivit pentru poze (Vision)
 model = genai.GenerativeModel('gemini-flash-latest')
-#model = genai.GenerativeModel('gemini-2.5-flash')
+# model = genai.GenerativeModel('gemini-2.5-flash')
 
 
 def analyze_prescription(image_file):

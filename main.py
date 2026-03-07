@@ -44,7 +44,33 @@ if uploaded_file is not None:
 
         if st.button("Analizează Rețeta", type="primary"):
             with st.spinner("AI-ul citește scrisul de medic... Te rugăm să aștepți."):
+                # 1. COMENTEAZĂ LINIA ASTA (pune # în față) ca să nu mai apelezi AI-ul real:
                 rezultat_ai = analyze_prescription(uploaded_file)
+
+                # # 2. ADAUGĂ MOCK DATA (date de test):
+                # import time
+                #
+                # time.sleep(1)  # Simulează că AI-ul "se gândește" 1 secundă, ca să vezi spinner-ul cum arată
+                #
+                # rezultat_ai = {
+                #     "cod_diagnostic": "I10",
+                #     "medicamente": [
+                #         {
+                #             "nume_brand_citit": "Paracetamol",
+                #             "doza": "500mg",
+                #             "instructiuni_pacient": "Un comprimat la nevoie, seara.",
+                #             "ore_sugerate": ["20:00"]
+                #         },
+                #         {
+                #             "nume_brand_citit": "Aspenter",
+                #             "doza": "75mg",
+                #             "instructiuni_pacient": "O dată pe zi, după masă.",
+                #             "ore_sugerate": ["08:00"]
+                #         }
+                #     ]
+                # }
+                #
+                # # 3. Salvăm rezultatul de test în sesiune, la fel cum făceam cu cel real
                 st.session_state['date_reteta'] = rezultat_ai
 
         if 'date_reteta' in st.session_state:
@@ -117,11 +143,12 @@ if uploaded_file is not None:
                         nume_ales_din_baza = None
                         if not match_df.empty:
                             optiuni_gasite = match_df['Denumire comerciala'].unique().tolist()
-                            nume_ales_din_baza = st.selectbox(
-                                "👉 Alege varianta exactă din nomenclator:",
-                                options=optiuni_gasite,
-                                key=f"select_{i}"
-                            )
+                            # nume_ales_din_baza = st.selectbox(
+                            #     "👉 Alege varianta exactă din nomenclator:",
+                            #     options=optiuni_gasite,
+                            #     key=f"select_{i}"
+                            # )
+                            nume_ales_din_baza = optiuni_gasite[0]
                         else:
                             st.warning(
                                 f"⚠️ Nu am găsit '{termen_cautare}' în baza de date. Încearcă să schimbi literele.")
@@ -163,4 +190,4 @@ if uploaded_file is not None:
                     if submit:
                         st.balloons()
                         st.success("Perfect! Datele validate sunt gata de a fi trimise în Google Calendar.")
-                        st.json(medicamente_confirmate)
+                        #st.json(medicamente_confirmate)
