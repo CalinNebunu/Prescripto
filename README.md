@@ -58,9 +58,6 @@ streamlit run main.py
 ## 📁 Project Structure
 
 ```
-## 📁 Project Structure
-
-```text
 Prescripto/
 ├── data/
 │   ├── coduri_boala.pdf         # ICD Disease code nomenclature
