@@ -16,6 +16,42 @@ Built @ Innovation Labs AI Hackathon 2026 by a team of 2nd-year Computer Science
 
 ---
 
+### 📸 App Interface & Product Vision
+Here is a quick look at the application flow, from prescription upload to calendar synchronization:
+
+![Prescripto Product Flow](screenshots/product.png)
+
+**Business & Pitch Deck:**
+We didn't just build the code; we validated the product. Check out our full [Pitch Deck (PDF)](Prescripto.pdf) to see our market analysis, B2B SaaS business model, and go-to-market strategy.
+
+---
+
+## 🏗️ System Architecture
+
+```text
+[User] 
+  │ (Uploads Prescription Image via UI)
+  ▼
+[Streamlit Frontend (main.py)]
+  │ (Passes image & prompt)
+  ▼
+[Gemini Vision API (ai_service.py)]
+  │ (Parses handwriting & returns structured JSON)
+  ▼
+[Data Validation (data_service.py)] 
+  │ (Matches JSON data against local ICD/Meds databases)
+  ▼
+[Human-in-the-Loop]
+  │ (User verifies and edits extracted data on UI)
+  ▼
+[Google Calendar API (calendar_service.py)]
+  │ (Creates scheduled events)
+  ▼
+[User's Device]
+```
+
+---
+
 ## 🛠️ Tech Stack
 
 - **Frontend/UI:** Streamlit
@@ -32,7 +68,7 @@ Built @ Innovation Labs AI Hackathon 2026 by a team of 2nd-year Computer Science
 
 1. Clone the repo
 ```bash
-git clone https://github.com/CalinNebunu/Prescripto.git
+git clone https://github.com/CalinBedea/prescripto.git
 cd Prescripto
 ```
 
@@ -95,7 +131,7 @@ Prescripto/
 
 Built with ❤️ at Innovation Labs Cluj 2026 by:
 
-* **Bedea Călin** - [GitHub Profile](https://github.com/CalinNebunu)
+* **Bedea Călin** - [GitHub Profile](https://github.com/CalinBedea)
 * **Trofin Alissia** - [GitHub Profile](https://github.com/trofinalissia98)
 * **Tîrcob Alina** - [GitHub Profile](https://github.com/alinatircob)
 * **Bota Luca** - [GitHub Profile](https://github.com/Lapt1c)
